@@ -1,0 +1,99 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Wishly: Install dependencies",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm install --no-audit --no-fund"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Wishly: Build",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Wishly: Dev server (port 3011)",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run dev -- -p 3011"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect running Wishly server",
+			"type": "shell",
+			"command": "Get-NetTCPConnection -State Listen -LocalPort 3011 | Select-Object LocalPort,OwningProcess",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Identify active Wishly dev node",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.ProcessId -eq 7932 } | Select-Object ProcessId,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Wishly dev listener",
+			"type": "shell",
+			"command": "Get-NetTCPConnection -State Listen -LocalPort 3011 | Select-Object LocalPort,OwningProcess",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Confirm Wishly server process",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.ProcessId -eq 7932 } | Select-Object ProcessId,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Wishly before verification build",
+			"type": "shell",
+			"command": "Stop-Process -Id 7932",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify birthday interaction changes",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Wishly local development server",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run dev -- -p 3011"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
