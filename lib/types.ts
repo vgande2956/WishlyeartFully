@@ -1,0 +1,3 @@
+export type Theme = 'dreamy'|'midnight'|'sunset'|'pastel'|'royal'|'minimal'|'garden'|'cosmic'|'retro'|'luxury'|'ocean'|'confetti';
+export type Relationship = 'Partner'|'Best Friend'|'Mom'|'Dad'|'Sister'|'Brother'|'Child'|'Colleague'|'Other';
+export type Experience={id:string;shareId:string;name:string;nickname:string;date:string;age:string;showAge:boolean;relationship:Relationship;theme:Theme;greeting:string;message:string;closing:string;signature:string;photos:string[];music:string;status:'Draft'|'Published';views:number;replays:number;createdAt:string;scenes:string[];language:string;password?:string};
